@@ -140,6 +140,14 @@ cat > /etc/docker/daemon.json <<EOF
 }
 EOF
 
+#Configure docker daemon with http proxy of host machine
+mkdir -p /etc/systemd/system/docker.service.d
+touch /etc/systemd/system/docker.service.d/http-proxy.conf
+cat > /etc/systemd/system/docker.service.d/http-proxy.conf <<EOF
+[Service]
+Environment="HTTP_PROXY=http://10.0.2.2:1087"
+EOF
+
 if [[ $1 -eq 1 ]];then
     yum install -y etcd
     #cp /vagrant/systemd/etcd.service /usr/lib/systemd/system/
