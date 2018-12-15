@@ -265,7 +265,12 @@ hack/deploy-helm.sh
 
 ### Service Mesh
 
-我们使用 [istio](https://istio.io) 作为 service mesh。
+#### 方案一，Linkerd
+作为CNCF基金会旗下首个Service Mesh解决方案，[Linkerd](https://linkerd.io/)可谓是服务网格界的开山鼻祖。
+
+#### 方案二，istio
+
+也可以使用 [istio](https://istio.io) 作为 service mesh解决方案。
 
 **安装**
 
