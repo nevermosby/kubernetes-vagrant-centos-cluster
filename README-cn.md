@@ -270,30 +270,30 @@ hack/deploy-helm.sh
 
 **安装**
 
-通过命令安装最新稳定版linkerd CLI工具，并且添加到你的`$PATH`路径下：
+通过命令安装最新稳定版linkerd CLI工具，并且添加到你的`$PATH`路径下：
 ```bash
 curl -sL https://run.linkerd.io/install | sh
 export PATH=$PATH:$HOME/.linkerd2/bin
 
-# 完成后，使用以下命令测试,正常情况下应该能看到Client版本号，由于没有安装Server，所以显示'unavailable'
+# 完成后，使用以下命令测试,正常情况下应该能看到Client版本号，由于没有安装Server，所以显示'unavailable'
 linkerd version
 > Client version: stable-2.1.0
   Server version: unavailable
 ```
 
 在Kubernetes中部署linkerd Server：
-- 预检你的kubernetes环境是否满足部署条件：
+- 预检你的kubernetes环境是否满足部署条件：
 ```bash
 linkerd check --pre
 ```
-- 通过命令部署
+- 通过命令部署
 ```bash
-# 快速部署
+# 快速部署
 kubectl apply -f addon/linkerd/linkerd-server.yaml
-# 官方部署
+# 官方部署
 linkerd install | kubectl apply -f -
 ```
-- 测试是否部署成功
+- 测试是否部署成功
 ```bash
 linkerd check
 > kubernetes-api: can initialize the client..................................[ok]
@@ -312,7 +312,7 @@ linkerd-version: control plane is up-to-date...............................[ok]
 
 Status check results are [ok]
 ```
-- 打开linkerd管理平台web portal：
+- 打开linkerd管理平台web portal：
 ```bash
 linkerd dashboard
 ```
@@ -324,7 +324,7 @@ linkerd官方提供了Demo应用，名字很有趣：`emojivoto`
 ```bash
 # 部署
 kubectl apply -f addon/linkerd/emojivoto.yaml
-# inject via linkerd
+# inject via linkerd
 kubectl get -n emojivoto deploy -o yaml \
   | linkerd inject - \
   | kubectl apply -f -
@@ -332,7 +332,7 @@ kubectl get -n emojivoto deploy -o yaml \
 成功部署后，能在linkerd管理平台上看到这个应用：
 ![emojivoto on linkerd](images/emojivoto-meshed.png)
 
-还有大家都喜欢的请求路由图形化展示：
+还有大家都喜欢的请求路由图形化展示：
 ![emojivoto routing on linkerd](images/emojivoto-routing.png)
 
 #### 方案二，istio
